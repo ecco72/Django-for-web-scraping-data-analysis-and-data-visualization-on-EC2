@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>飯店搜尋結果</title>
+	<link rel="stylesheet" href="http://54.250.56.245:8888/static/css/hotels.css">
+</head>
+
+<body>
+<header class="header-outer">
+	<div class="header-inner responsive-wrapper">
+		<div class="header-logo">
+			<a class="download" href="http://54.250.56.245:8888/getCSV/">下載csv</a>
+			<a class="download" href="http://54.250.56.245:8888/plot/">空房數量與價格分析</a>
+			<a class="download" href="http://54.250.56.245:8888/recommendation/">精選</a>
+      <a class="download" href="http://54.250.56.245:8888/api/Agoda/" target="__blank">DRF API</a>
+      <a class="download" href="http://54.250.56.245:8888/swagger/" target="__blank">Swagger API</a>
+		</div>
+		<nav class="header-navigation">
+            <a href="http://54.250.56.245:8888/logout/">登出</a>
+			<a href="http://54.250.56.245:8888/" target="__blank">回首頁</a>
+		</nav>
+	</div>
+</header>
+
+
+<% result.forEach(hotel => { %>
+    <div class="container page-wrapper">
+        <div class="page-inner">
+            <div class="row">
+                <div class="el-wrapper" href="<%= hotel.link_url %>" target="__blank">
+                    <div class="box-up">
+                        <img class="img" src="<%= hotel.photo_url %>" alt="">
+                        <div class="img-info">
+                            <div class="info-inner">
+                                <span class="p-name"><%= hotel.title %></span>
+                                <span class="p-company">區域:<%= hotel.loc %></span>
+                            </div>
+                            <div class="a-size">星級 : <span class="size"><%= hotel.rate %></span></div>
+                        </div>
+                    </div>
+
+                    <div class="box-down">
+                        <div class="h-bg">
+                            <div class="h-bg-inner"></div>
+                        </div>
+
+                        <a class="cart" href="<%= hotel.link_url %>" target="__blank">
+                            <span class="price"><%= hotel.currency %>:<%= hotel.price.toFixed(2) %>元</span>
+                            <span class="add-to-cart">
+                                <span class="txt">訂房</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }) %>
+</body>
+</html>
