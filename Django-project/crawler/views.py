@@ -392,13 +392,10 @@ def recommendation(request):
 
 class IsAuthenticatedReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
-        # 允许已认证用户执行 GET 请求
         if request.method == 'GET' and request.user.is_authenticated:
             return True
-        # 只有超级用户才能执行 DELETE 请求
         elif (request.method in ['DELETE', 'PUT', 'POST', 'PATCH'] and request.user.is_superuser):
             return True
-        # 其他请求返回 False
         return False
 
 # api的views程式碼 下面是使用modelviewset 本身就包含了完整的get,post,put,delete，若是使用GenericAPIView需要自行新增get等功能
