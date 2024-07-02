@@ -1,4 +1,4 @@
-# Django for web scraping,data analysis,and data visualization on EC2
+# Django for web scraping, data analysis, and data visualization on EC2
  
 架設EC2 Web伺服器過程：
 
